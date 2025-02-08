@@ -317,6 +317,13 @@
             color: #888;
         }
     </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function() {
+        // Replace with your actual EmailJS public key
+        emailjs.init("w49J0nwjKfrYX0lN5");
+      })();
+    </script>
   </head>
 
 <body>
@@ -436,15 +443,15 @@
         <div class="col-lg-6">
           <div class="vote-option text-center">
             <h4>Water Bottles</h4>
-            <button onclick="incrementCount('bottleCount')" class="btn btn-primary">Choose Water Bottles</button>
-            <p>Selected: <span id="bottleCount">0</span> times</p>
+            <button onclick="handleVote('Water Bottles')" class="btn btn-primary">Choose Water Bottles</button>
+            <p id="bottleMessage" class="vote-message"></p>
           </div>
         </div>
         <div class="col-lg-6">
           <div class="vote-option text-center">
             <h4>Filtration Kit</h4>
-            <button onclick="incrementCount('kitCount')" class="btn btn-success">Choose Filtration Kit</button>
-            <p>Selected: <span id="kitCount">0</span> times</p>
+            <button onclick="handleVote('Filtration Kit')" class="btn btn-success">Choose Filtration Kit</button>
+            <p id="kitMessage" class="vote-message"></p>
           </div>
         </div>
       </div>
@@ -485,19 +492,33 @@
     </div>
   </footer>
 
-  <script>
-    function incrementCount(elementId) {
-        const element = document.getElementById(elementId);
-        let count = parseInt(element.textContent);
-        element.textContent = count + 1;
-        // You might want to add localStorage or server-side storage here
-        localStorage.setItem(elementId, count + 1);
+  <style>
+    /* Add this to your existing styles */
+    .vote-message {
+      margin-top: 10px;
+      color: #28a745;
+      font-weight: 500;
     }
+  </style>
 
-    // Load saved counts on page load
-    window.onload = function() {
-        document.getElementById('bottleCount').textContent = localStorage.getItem('bottleCount') || 0;
-        document.getElementById('kitCount').textContent = localStorage.getItem('kitCount') || 0;
+  <script>
+    function handleVote(option) {
+      const messageId = option === 'Water Bottles' ? 'bottleMessage' : 'kitMessage';
+      document.getElementById(messageId).textContent = 'Thank you for your vote!';
+      
+      // Send email notification
+      const templateParams = {
+        to_email: 'lcarlin@olin.edu',
+        vote_option: option,
+        timestamp: new Date().toLocaleString()
+      };
+
+      emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+        .then(function(response) {
+          console.log('Email sent successfully:', response);
+        }, function(error) {
+          console.error('Email failed to send:', error);
+        });
     }
   </script>
 
