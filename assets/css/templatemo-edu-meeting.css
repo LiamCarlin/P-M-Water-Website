@@ -199,6 +199,13 @@ body {
   color: #fff;
 }
 
+.water-bottles:hover {
+  background-color: #ffe5e5;
+}
+
+.filtration-kit:hover {
+  background-color: #e5ffe5;
+}
 
 /* 
 ---------------------------------------------

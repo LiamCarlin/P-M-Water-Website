@@ -31,9 +31,10 @@
 
         .main-banner {
             position: relative;
-            height: 100vh;
+            height: 75vh;
             background: #000;
             overflow: hidden;
+            margin-bottom: 2rem; /* new line to add spacing */
         }
 
         #bg-video {
@@ -128,6 +129,13 @@
             color: #555;
         }
 
+        .comparison-item img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
         .vote-option {
             background: #fff;
             padding: 20px;
@@ -194,7 +202,8 @@
         }
         .image-container {
             position: relative;
-            width: max-content;
+            width: 100%;
+            max-width: 900px;
             margin: 0 auto;
         }
         .image-text-overlay {
@@ -208,16 +217,121 @@
             border-radius: 4px;
             text-align: center;
         }
+        .floating-nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+        .floating-nav button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .floating-nav button:hover {
+            background-color: #555;
+            transform: scale(1.05);
+        }
+        .footer {
+            background: linear-gradient(45deg, #1a1a1a, #333);
+            color: #fff;
+            padding: 60px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #007bff, #00ff88);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 30px;
+            height: 2px;
+            background: #007bff;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #007bff;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: rgba(255,255,255,0.1);
+            margin-right: 10px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            color: #fff;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #007bff;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+        }
     </style>
   </head>
 
 <body>
+    <div class="floating-nav">
+        <button onclick="document.getElementById('top').scrollIntoView({behavior: 'smooth'});">Home</button>
+        <button onclick="document.querySelector('.mission').scrollIntoView({behavior: 'smooth'});">Mission</button>
+        <button onclick="document.querySelector('.product-info').scrollIntoView({behavior: 'smooth'});">Product Info</button>
+        <button onclick="document.querySelector('.comparison').scrollIntoView({behavior: 'smooth'});">Comparison</button>
+        <button onclick="document.querySelector('.voting').scrollIntoView({behavior: 'smooth'});">Voting</button>
+    </div>
   <!-- Header with Video Background -->
   <section class="section main-banner" id="top" data-section="section1">
-      <video autoplay muted loop id="bg-video">
-          <source src="assets/images/course_video.mp4" type="video/mp4" />
-      </video>
-      <img src="https://via.placeholder.com/300" alt="Banner Placeholder" class="banner-img">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+          <img src="assets/images/waterfall.gif" alt="Waterfall" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
       <div class="video-overlay header-text">
           <div class="container">
             <div class="row">
@@ -267,8 +381,7 @@
           </div>
         </div>
         <div class="image-container">
-            <img src="./assets/images/placeholder_kit.jpg" alt="Product Info Placeholder" class="centered-image" style="width:200px;">
-            <div class="image-text-overlay">Product Info Image</div>
+            <img src="./assets/images/DALL·E 2025-02-08 14.09.39 - A realistic survival kit featuring multiple water filtration devices designed for disaster preparedness, di.jpg" alt="Product Info Placeholder" class="centered-image" style="width:300px;">
         </div>
       </div>
     </div>
@@ -278,39 +391,39 @@
   <section class="section comparison">
     <div class="container">
       <div class="row">
-        <div class="col-lg-12">
-          <h2>Water Bottles vs. Our Kit</h2>
+      <div class="col-lg-12">
+        <h2>Water Bottles vs. Our Kit</h2>
+      </div>
+      <div class="col-lg-6">
+        <div class="comparison-item water-bottles">
+        <h4>Water Bottles</h4>
+        <div class="image-container">
+          <img src="./assets/images/bottled_water-900x675.jpeg" alt="Water Bottles" class="centered-image">
+  
         </div>
-        <div class="col-lg-6">
-          <div class="comparison-item">
-            <h4>Water Bottles</h4>
-            <div class="image-container">
-                <img src="https://via.placeholder.com/150" alt="Water Bottles" class="centered-image" style="width:150px;">
-                <div class="image-text-overlay">Water Bottles</div>
-            </div>
-            <ul>
-              <li>Limited supply</li>
-              <li>Heavy to transport</li>
-              <li>Creates plastic waste</li>
-              <li>One-time use</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="comparison-item">
-            <h4>Our Filtration Kit</h4>
-            <img src="https://via.placeholder.com/150" alt="Filtration Kit" class="centered-image" style="width:150px;">
-            <ul>
-              <li>Unlimited clean water</li>
-              <li>Lightweight and portable</li>
-              <li>Environmentally friendly</li>
-              <li>Reusable</li>
-            </ul>
-          </div>
+        <ul>
+          <li>Limited supply</li>
+          <li>Heavy to transport</li>
+          <li>Creates plastic waste</li>
+          <li>One-time use</li>
+        </ul>
         </div>
       </div>
+      <div class="col-lg-6">
+        <div class="comparison-item filtration-kit">
+        <h4>Our Filtration Kit</h4>
+        <img src="./assets/images/DALL·E 2025-02-08 14.22.13 - A realistic lineup of some of the items from a survival kit designed for disaster preparedness, displayed o.jpg" alt="Filtration Kit" class="centered-image">
+        <ul>
+          <li>Unlimited clean water</li>
+          <li>Lightweight and portable</li>
+          <li>Environmentally friendly</li>
+          <li>Reusable</li>
+        </ul>
+        </div>
+      </div>
+      </div>
     </div>
-  </section>
+    </section>
 
   <!-- Voting Section -->
   <section class="section voting">
@@ -335,9 +448,42 @@
           </div>
         </div>
       </div>
-      <img src="https://via.placeholder.com/250" alt="Voting Section" class="centered-image" style="width:250px;">
     </div>
   </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>About Us</h3>
+          <p>Emergency Water Solutions provides innovative water filtration systems for disaster preparedness and emergency situations.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="#top">Home</a>
+            <a href="#mission">Our Mission</a>
+            <a href="#comparison">Products</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Info</h3>
+          <p>
+            <i class="fa fa-envelope"></i> lcarlin@olin.edu<br>
+            <i class="fa fa-envelope"></i> arao@olin.edu<br>
+            <i class="fa fa-envelope"></i> ychen6@olin.edy<br>
+            <i class="fa fa-envelope"></i> elarouche@olin.edu<br>
+            <i class="fa fa-map-marker"></i> 1000 Olin Way, Needham, MA 02492
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 emergency Water Solutions. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
 
   <script>
     function incrementCount(elementId) {
