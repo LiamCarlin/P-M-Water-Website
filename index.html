@@ -317,12 +317,14 @@
             color: #888;
         }
     </style>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
       (function() {
-        // Replace with your actual EmailJS public key
-        emailjs.init("w49J0nwjKfrYX0lN5");
-      })();
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init({
+              publicKey: "w49J0nwjKfrYX0lN5",
+            });
+        })();
     </script>
   </head>
 
@@ -501,7 +503,7 @@
     }
   </style>
 
-  <script>
+  <script type="text/javascript">
     function handleVote(option) {
       const messageId = option === 'Water Bottles' ? 'bottleMessage' : 'kitMessage';
       document.getElementById(messageId).textContent = 'Thank you for your vote!';
@@ -513,7 +515,7 @@
         timestamp: new Date().toLocaleString()
       };
 
-      emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+      emailjs.send('service_xiktsij', 'template_2d7ygtm', templateParams)
         .then(function(response) {
           console.log('Email sent successfully:', response);
         }, function(error) {
